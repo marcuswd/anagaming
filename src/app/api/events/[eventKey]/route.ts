@@ -3,7 +3,7 @@ import { ApiOptions } from '@/utils/api'
 
 export async function GET(
   request: Request,
-  { params }: { params: { eventKey: string } },
+  { params }: { params: Promise<{ eventKey: string }> },
 ) {
   try {
     const { eventKey } = await params

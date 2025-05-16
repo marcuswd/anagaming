@@ -3,10 +3,10 @@ import { ApiOptions } from '@/utils/api'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { competitionKey: string } },
+  { params }: { params: Promise<{ competitionKey: string }> },
 ) {
   try {
-    const { competitionKey } = params
+    const { competitionKey } = await params
 
     const response = await fetch(
       `${process.env.SPORTSBOOK_API_URL}/v0/competitions/${competitionKey}/events`,

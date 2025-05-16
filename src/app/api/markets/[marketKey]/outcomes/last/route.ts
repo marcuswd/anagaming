@@ -3,7 +3,7 @@ import { ApiOptions } from '@/utils/api'
 
 export async function GET(
   request: Request,
-  { params }: { params: { marketKey: string } },
+  { params }: { params: Promise<{ marketKey: string }> },
 ) {
   try {
     const { marketKey } = await params
