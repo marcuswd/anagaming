@@ -6,12 +6,11 @@ export async function GET(
   { params }: { params: { competitionKey: string } },
 ) {
   try {
-    const { competitionKey } = await params
+    const { competitionKey } = params
 
     const response = await fetch(
       `${process.env.SPORTSBOOK_API_URL}/v0/competitions/${competitionKey}/events`,
       {
-        cache: 'force-cache',
         ...ApiOptions,
       },
     )
