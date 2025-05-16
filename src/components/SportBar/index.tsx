@@ -22,7 +22,7 @@ export default function Sportbar() {
               return (
                 <li key={item.key}>
                   <Link
-                    href={slug}
+                    href={`${process.env.NEXT_PUBLIC_APP_URL}/${slug}`}
                     className={`md:w-auto w-50 leading-5 transition flex items-center gap-3 py-2 px-5 rounded-full font-semibold text-xs uppercase ${pathname_active.includes(slug) ? 'bg-blue-600 text-white cursor-default' : 'bg-gray-200 border-1 border-gray-300 hover:text-blue-600 hover:border-blue-600'}`}
                   >
                     <figure style={{ width: '24px' }}>
