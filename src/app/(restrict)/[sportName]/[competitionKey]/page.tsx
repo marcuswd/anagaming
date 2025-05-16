@@ -22,14 +22,20 @@ export default function DetailOddPage() {
     competitionKey ? competitionKey.toString() : null,
   )
 
-  const { participants, startTime, homeParticipantKey } = useMemo(
-    () => ({
-      participants: eventDetail[0]?.participants,
-      startTime: eventDetail[0]?.startTime,
-      homeParticipantKey: eventDetail[0]?.homeParticipantKey,
-    }),
-    [eventDetail],
-  )
+  const { participants, startTime, homeParticipantKey } = useMemo(() => {
+    if (!eventDetail) {
+      return {
+        participants: undefined,
+        startTime: '',
+        homeParticipantKey: undefined,
+      }
+    }
+    return {
+      participants: eventDetail.participants,
+      startTime: eventDetail.startTime,
+      homeParticipantKey: eventDetail.homeParticipantKey,
+    }
+  }, [eventDetail])
 
   const [participantsOrder, setOrderParticipants] =
     useState<ParticipantsOrderType>()
