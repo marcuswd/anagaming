@@ -55,7 +55,7 @@ export default function SportsPage() {
     }
   }, [sportName, currentLegues, competitionGroupMemo, currentLeguesMemo])
 
-  const { eventsBySport } = useEvents([], currentLegues)
+  const { eventsBySport } = useEvents(null, currentLeguesMemo, null)
 
   return (
     <>
