@@ -3,7 +3,7 @@ import { ApiOptions } from '@/utils/api'
 
 export async function GET(
   request: NextRequest,
-  params: { competitionKey: string },
+  { params }: { params: { competitionKey: string } },
 ) {
   try {
     const { competitionKey } = await params
