@@ -57,7 +57,7 @@ export default function DetailOddPage() {
         away: awayParticipantData,
       })
     }
-  }, [homeParticipantKey, participants])
+  }, [homeParticipantKey, participants, eventDetail])
 
   const { date, time } = formatEventDateTime(startTime)
 

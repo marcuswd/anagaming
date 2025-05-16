@@ -64,7 +64,7 @@ export function useEvents(
     }
 
     if (data) {
-      setEventDetail(data)
+      setEventDetail(Array.isArray(data) ? data[0] : data)
     }
   }, [eventKey])
 

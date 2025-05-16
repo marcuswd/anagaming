@@ -49,14 +49,8 @@ export function useCompetitions(sportName?: string) {
   }, [])
 
   useEffect(() => {
-    getCompetitionsBySport()
+    if (sportName) getCompetitionsBySport()
   }, [sportName, getCompetitionsBySport])
-
-  useEffect(() => {
-    if (listCompetitions.length > 0) {
-      getCompetitionsBySport()
-    }
-  }, [listCompetitions, getCompetitionsBySport])
 
   return {
     listCompetitions,
