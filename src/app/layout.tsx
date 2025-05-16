@@ -5,6 +5,8 @@ import { ReactNode } from 'react'
 
 const robotoFlex = Roboto_Flex({
   weight: ['100', '300', '500', '600', '800'],
+  subsets: ['latin'],
+  variable: '--font-roboto-flex',
 })
 
 export const metadata: Metadata = {
