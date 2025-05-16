@@ -62,5 +62,6 @@ export function useCompetitions(sportName?: string) {
     setListCompetitions,
     listCompetitionsBySport,
     eventsByCompetition,
+    setEventsByCompetition,
   }
 }

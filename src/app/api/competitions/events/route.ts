@@ -20,11 +20,13 @@ export async function GET(request: NextRequest) {
       if (!Array.isArray(eventKeys)) {
         throw new Error('eventKeys deve ser um array')
       }
-    } catch (error) {
+    } catch (err) {
       return NextResponse.json(
         {
           error:
-            'Formato inválido para eventKeys. Deve ser um array JSON válido.',
+            err instanceof Error
+              ? `Erro na requisição ${err.message}.`
+              : `Ocorreu um erro desconhecido na requisição.`,
         },
         { status: 400 },
       )
@@ -44,9 +46,14 @@ export async function GET(request: NextRequest) {
     const { events } = await response.json()
 
     return NextResponse.json({ events })
-  } catch (error) {
+  } catch (err) {
     return NextResponse.json(
-      { error: 'Erro interno do servidor' },
+      {
+        error:
+          err instanceof Error
+            ? `Erro na requisição ${err.message}.`
+            : `Ocorreu um erro desconhecido na requisição.`,
+      },
       { status: 500 },
     )
   }
