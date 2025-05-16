@@ -28,6 +28,7 @@ export function useCompetitions(sportName?: string) {
   }
 
   const getCompetitionsBySport = useCallback(async () => {
+    if (!sportName) throw new Error('Erro ao carregar o sportName')
     const competitionsBySportData =
       CompetitionsServices.filterCompetitionsBySportName(
         listCompetitions,
