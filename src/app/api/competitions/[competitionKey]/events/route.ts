@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { ApiOptions } from '@/utils/api'
 
 export async function GET(
-  request: Request,
-  { params }: { params: { competitionKey: string } },
+  request: NextRequest,
+  params: { competitionKey: string },
 ) {
   try {
     const { competitionKey } = await params
