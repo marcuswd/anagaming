@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Roboto_Flex } from 'next/font/google'
 import './globals.css'
 import { ReactNode } from 'react'
+import { Analytics } from '@vercel/analytics/next'
 
 const robotoFlex = Roboto_Flex({
   weight: ['100', '300', '500', '600', '800'],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body
         className={`${robotoFlex.className} antialiased bg-gray-100 md:min-h-screen h-full`}
       >
+        <Analytics />
         {children}
       </body>
     </html>
