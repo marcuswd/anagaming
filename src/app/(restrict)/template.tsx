@@ -1,15 +1,20 @@
-'use client'
-import HeaderComponent from '@/components/Header'
-import Sportbar from '@/components/SportBar'
-import { SessionProvider } from 'next-auth/react'
-import { PropsWithChildren } from 'react'
+import { SportsController } from '@/controllers/SportsController'
+import { ClientTemplate } from '@/components/Client/Layout'
+import { ReactNode } from 'react'
 
-export default function Template({ children }: PropsWithChildren) {
+export const revalidate = 86400
+
+export default async function Template({ children }: { children: ReactNode }) {
+  const { data: initialCompetitions, error } =
+    await SportsController.getStaticSports()
+
+  if (error) {
+    return <ClientTemplate initialCompetitions={[]}>{children}</ClientTemplate>
+  }
+
   return (
-    <SessionProvider>
-      <HeaderComponent />
-      <Sportbar />
+    <ClientTemplate initialCompetitions={initialCompetitions || []}>
       {children}
-    </SessionProvider>
+    </ClientTemplate>
   )
 }

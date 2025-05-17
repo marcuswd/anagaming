@@ -1,17 +1,20 @@
+'use client'
 import Image from 'next/image'
 import LayoutContainer from '@/components/Container'
-import { useCompetitions } from '@/hooks/useCompetitions'
-import { useSports } from '@/hooks/useSports'
 import { SportsType } from '@/types'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export default function Sportbar() {
-  const { listCompetitions } = useCompetitions()
-  const { sports } = useSports(listCompetitions)
-
+export default function Sportbar({
+  initialCompetitions,
+}: {
+  initialCompetitions: SportsType[]
+}) {
   const pathname = usePathname()
   const pathname_active = pathname.replace('/', '')
+
+  const sports = initialCompetitions
+
   return (
     <nav className="py-3 flex gap-3 mb-5 bg-gray-100 border-b border-gray-300">
       <LayoutContainer>

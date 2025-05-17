@@ -2,7 +2,9 @@ import { RepositoryResponse, CompetitionsType } from '@/types'
 
 export const SportsRepository = {
   getAll: async (): Promise<RepositoryResponse<CompetitionsType[]>> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/sports`)
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXTAPI_URL}/competitions`,
+    )
 
     if (!response.ok) {
       return { data: null, error: 'Erro na requisição' }

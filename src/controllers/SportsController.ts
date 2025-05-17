@@ -1,24 +1,36 @@
-import { RepositoryResponse, SportsType } from '@/types'
-import { SportsRepository } from '@/repository/SportsRepository'
+import { SportsService } from '@/services/SportsService'
+import { ApiOptions } from '@/utils/api'
 
-export const SportsController = {
-  allSports: async (): Promise<RepositoryResponse<SportsType[]>> => {
+export class SportsController {
+  static async getStaticSports() {
     try {
-      const { data, error } = await SportsRepository.getAll()
+      const response = await fetch(
+        `${process.env.SPORTSBOOK_API_URL}/v0/competitions`,
+        {
+          cache: 'force-cache',
+          ...ApiOptions,
+        },
+      )
 
-      if (!data) {
-        return { data: null, error: error }
+      if (!response.ok) {
+        const text = await response.text()
+        throw new Error(`Erro na API: ${response.status} - ${text}`)
       }
 
-      return { data, error: null }
+      const { competitions } = await response.json()
+
+      const filteredSports = SportsService.filterUniqueSports(competitions)
+      const fixedSportsNames = SportsService.fixSportsNames(filteredSports)
+
+      return {
+        data: fixedSportsNames,
+        error: null,
+      }
     } catch (err) {
       return {
         data: null,
-        error:
-          err instanceof Error
-            ? `Erro na requisição ${err.message}.`
-            : `Ocorreu um erro desconhecido na requisição.`,
+        error: err,
       }
     }
-  },
+  }
 }
